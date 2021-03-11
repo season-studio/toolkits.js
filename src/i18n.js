@@ -89,3 +89,5 @@ $T.setLocale = async function (_locale) {
     }
     return locale;
 }
+
+export const i18n = $T;
