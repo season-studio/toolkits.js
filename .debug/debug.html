@@ -1,0 +1,26 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../src/tip/default-style.css">
+</head>
+<body>
+    <button id="testTip">tip</button>
+    <script type="module">
+        import { tip } from "../src/tip/index.js";
+
+        document.getElementById("testTip").addEventListener("click", () => (tip("warning", {
+            type: "warn",
+            onclose: () => console.log("tip 'warning' is closed"),
+            closable: true,
+            timeout: 1700
+        }), tip("error", {
+            type: "error",
+            onclose: () => console.log("tip 'error' is closed"),
+            closable: true
+        }), tip("unknown", {
+            type: "unknown",
+            onclose: () => console.log("tip 'unknown' is closed")
+        }), tip("info", "info")));
+
+    </script>
+</body>
+</html>

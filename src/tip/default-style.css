@@ -1,0 +1,64 @@
+.-season-tip-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 6px 0px;
+    overflow: hidden;
+}
+
+.-season-tip-box {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    box-shadow: 0px 0px 6px rgba(128, 128, 128, 0.6);
+    font-size: 13px;
+    color: #666;
+    padding: 6px;
+    margin: 6px;
+    border-radius: 6px;
+}
+
+.-season-tip-icon {
+    width: 20px;
+    height: 20px;
+    background-size: 100% 100%;
+}
+
+.-season-tip-text {
+    height: auto;
+    margin: 0px 3px;
+}
+
+.-season-tip-close-button {
+    width: 20px;
+    height: 20px;
+    background: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgOTYgOTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIGZpbGw9IiNkZGQiPg0KICAgIDxwYXRoIGQ9Ik00Ny45ODUgMTBDMjcuMDA5MiA5Ljk5OTQ1IDEwLjAwNDYgMjcuMDAzMiAxMC4wMDQgNDcuOTc5IDEwLjAwMzQgNjguOTU0OCAyNy4wMDcyIDg1Ljk1OTQgNDcuOTgzIDg1Ljk2IDY4Ljk1ODggODUuOTYwNSA4NS45NjM0IDY4Ljk1NjggODUuOTY0IDQ3Ljk4MSA4NS45NjQgNDcuOTc5NyA4NS45NjQgNDcuOTc4MyA4NS45NjQgNDcuOTc3IDg1Ljk3MTcgMjcuMDEwNiA2OC45ODE0IDEwLjAwNzcgNDguMDE1IDEwIDQ4LjAwNSA5Ljk5OTk5IDQ3Ljk5NSA5Ljk5OTk5IDQ3Ljk4NSAxMFpNNjQuOTU1IDYwLjE2OSA2MC4xNzQgNjQuOTUgNDcuOTg1IDUyLjc1OSAzNS44IDY0Ljk0OCAzMS4wMTkgNjAuMTY3IDQzLjIgNDcuOTc3IDMxLjAxNCAzNS43ODggMzUuOCAzMS4wMDcgNDcuOTg1IDQzLjIgNjAuMTc0IDMxLjAwNyA2NC45NTUgMzUuNzg4IDUyLjc2NiA0Ny45NzdaIi8+DQo8L3N2Zz4=") no-repeat;
+    background-size: 100% 100%;
+}
+
+.-season-tip-type-normal .-season-tip-icon {
+    width: 0px;
+    background: transparent;
+}
+
+.-season-tip-type-info .-season-tip-icon {
+    background: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgOTYgOTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIGZpbGw9IiMwMGEyZTgiPg0KICAgIDxwYXRoIGQ9Ik00OCAxMEMyNyAxMCAxMCAyNyAxMCA0OCAxMCA2OSAyNyA4NiA0OCA4NiA2OSA4NiA4NiA2OSA4NiA0OCA4NiAyNyA2OSAxMCA0OCAxMFpNNDYgMjBDNDguOCAyMCA1MSAyMi4yIDUxIDI1IDUxIDI3LjggNDguOCAzMCA0NiAzMCA0My4yIDMwIDQxIDI3LjggNDEgMjUgNDEgMjIuMiA0My4yIDIwIDQ2IDIwWk01OCA3NiAzOCA3NiAzOCA3MCA0NSA3MCA0NSA0MCAzOSA0MCAzOSAzNCA1MSAzNCA1MSA0MCA1MSA3MCA1OCA3MCA1OCA3NloiLz4NCjwvc3ZnPg==")  no-repeat;
+}
+
+.-season-tip-type-warn .-season-tip-icon {
+    background: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgOTYgOTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIGZpbGw9IiNmZmM5MGUiPg0KICAgIDxwYXRoIGQ9Ik05MC42IDgwIDUxLjUgMTJDNTAgOS4zIDQ2LjEgOS4zIDQ0LjYgMTJMNS40IDgwQzMuOSA4Mi43IDUuOCA4NiA4LjkgODZMNDggODYgODcuMSA4NkM5MC4yIDg2IDkyLjEgODIuNyA5MC42IDgwWk00NSAyOCA1MSAyOCA1MSA2MyA0NSA2MyA0NSAyOFpNNDggNzdDNDUuMiA3NyA0MyA3NC44IDQzIDcyIDQzIDY5LjIgNDUuMiA2NyA0OCA2NyA1MC44IDY3IDUzIDY5LjIgNTMgNzIgNTMgNzQuOCA1MC44IDc3IDQ4IDc3WiIvPg0KPC9zdmc+")  no-repeat;
+}
+
+.-season-tip-type-error .-season-tip-icon {
+    background: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgOTYgOTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIGZpbGw9IiNmMDAiPg0KICAgIDxwYXRoIGQ9Ik00Ny45ODUgMTBDMjcuMDA5MiA5Ljk5OTQ1IDEwLjAwNDYgMjcuMDAzMiAxMC4wMDQgNDcuOTc5IDEwLjAwMzQgNjguOTU0OCAyNy4wMDcyIDg1Ljk1OTQgNDcuOTgzIDg1Ljk2IDY4Ljk1ODggODUuOTYwNSA4NS45NjM0IDY4Ljk1NjggODUuOTY0IDQ3Ljk4MSA4NS45NjQgNDcuOTc5NyA4NS45NjQgNDcuOTc4MyA4NS45NjQgNDcuOTc3IDg1Ljk3MTcgMjcuMDEwNiA2OC45ODE0IDEwLjAwNzcgNDguMDE1IDEwIDQ4LjAwNSA5Ljk5OTk5IDQ3Ljk5NSA5Ljk5OTk5IDQ3Ljk4NSAxMFpNNjQuOTU1IDYwLjE2OSA2MC4xNzQgNjQuOTUgNDcuOTg1IDUyLjc1OSAzNS44IDY0Ljk0OCAzMS4wMTkgNjAuMTY3IDQzLjIgNDcuOTc3IDMxLjAxNCAzNS43ODggMzUuOCAzMS4wMDcgNDcuOTg1IDQzLjIgNjAuMTc0IDMxLjAwNyA2NC45NTUgMzUuNzg4IDUyLjc2NiA0Ny45NzdaIi8+DQo8L3N2Zz4=") no-repeat;
+}
