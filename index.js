@@ -1,3 +1,4 @@
+export * from "./src/readonly";
 export * from "./src/i18n";
 export * from "./src/domKits";
 export const DomKits = require("./src/domKits.js");
