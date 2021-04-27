@@ -144,7 +144,7 @@ function onConfirmTimer(_this, _button, _caption, _timeout) {
         this[$timerId] = setTimeout(onConfirmTimer, 1000, _this, _button, _caption, _timeout - 1);
     } else {
         this[$timerId] = undefined;
-        _this.close(_button.getAttribute("d-index"));
+        _this.close(Number(_button.getAttribute("d-index")));
     }
 }
 
@@ -161,7 +161,7 @@ confirm.prototype = {
                 setTimeout(() => div.className = "-season-tip-mask-container -season-tip-fadein", 0);
                 [...div.querySelectorAll(".-season-tip-button")].forEach(button => {
                     button.addEventListener("click", e => {
-                        this.close(e.target.getAttribute("d-index"));
+                        this.close(Number(e.target.getAttribute("d-index")));
                     });
                 });
                 const timeout = Number(this[$options].timeout);
