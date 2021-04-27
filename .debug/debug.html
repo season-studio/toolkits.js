@@ -5,7 +5,7 @@
 <body>
     <button id="testTip">tip</button>
     <script type="module">
-        import { tip } from "../src/tip/index.js";
+        import { tip, confirm } from "../src/tip/index.js";
 
         document.getElementById("testTip").addEventListener("click", () => (tip("warning", {
             type: "warn",
@@ -19,7 +19,9 @@
         }), tip("unknown", {
             type: "unknown",
             onclose: () => console.log("tip 'unknown' is closed")
-        }), tip("info", "info")));
+        }), tip("info", "info"), tip("normal", "normal"),
+        confirm("Hello World", { icon: "warn", buttons: ["OK", "Cancel"], timeout: 5}).then(r => console.warn("cr =", r)),
+        window["$$"] = new confirm("OOOOO\nTest the confirm box", "question", ["Yes", "No"])));
 
     </script>
 </body>
