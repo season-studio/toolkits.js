@@ -150,6 +150,7 @@
     border-radius: 6px;
     border: solid 1px #ccc;
     color: #777;
+    min-width: 60px;
 }
 
 .-season-tip-button:hover {
