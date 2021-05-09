@@ -51,3 +51,58 @@ export function listenResize(_target, _handler) {
     resizeObserver.observe(_target);
     return resizeObserver;
 }
+
+/**
+ * invoke a link without displaying
+ * @param {String} _url the URL of the link
+ * @param {Object} _opt optional parameter, the members in which will be set into the <a> element
+ */
+ export function dynInvokeLink(_url, _opt) {
+    if (_url) {
+        const aElement = document.createElement("a");
+        if (aElement) {
+            aElement.href = _url;
+            aElement.rel = "noopener";
+            if (_opt) {
+                for (const name in _opt) {
+                    aElement[name] = _opt[name];
+                }
+            }
+            aElement.click();
+        }
+    }
+}
+
+/**
+ * pickup a file
+ * @param {String} _fileType the external name of the target files, this parameter is optional
+ * @returns {Promise<File|undefined>} the File object of the file picked
+ */
+export function pickFile(_fileType) {
+    return new Promise((resoleve, reject) => {
+        try {
+            const inputElement = document.createElement("input");
+            inputElement.type = "file";
+            _fileType && (inputElement.accept = _fileType);
+            inputElement.addEventListener("change", () => { 
+                const files = inputElement.files;
+                if (files.length > 0) {
+                    resoleve(files[0]);
+                } else {
+                    resoleve(undefined);
+                }
+            });
+            inputElement.click();
+        } catch (error) {
+            reject(error);
+        }
+    });
+}
+
+/**
+ * polyfill the button key of the MouseEvent
+ * @returns {Number} (1)Left Button; (2)Middle Button; (3)Right Buttton
+ */
+export function mouseButton(_event) {
+    return (_event.which === undefined) ? (_event.button + 1) : _event.which;
+}
