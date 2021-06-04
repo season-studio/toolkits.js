@@ -70,6 +70,7 @@ Object.defineProperties($T, {
  * @param {*} _locale the locale name
  */
 $T.setLocale = async function (_locale) {
+    _locale = String(_locale).toLowerCase();
     locale = (wordSet && wordSet[_locale]);
     if (!locale && loader) {
         try {
