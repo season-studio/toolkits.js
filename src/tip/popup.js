@@ -1,5 +1,7 @@
 import { $private, $resolve, $options, $timerId, $result, FlexAlignMap, setTopZIndex, close } from "./public";
 
+const $hasImage = Symbol("season.tip.popup.hasimage");
+
 export default function popup(_list, _refElement, _opt) {
     (_list instanceof Array) || (_list = [String(_list)]);
     let opt = {};
@@ -30,9 +32,12 @@ export default function popup(_list, _refElement, _opt) {
             opt.customTag && div.setAttribute(opt.customTag, opt.customTag);
             isNaN(opt.fadeOutTime) && (opt.fadeOutTime = 0.1);
             opt.style && div.setAttribute("style", opt.style);
+            this[$hasImage] = [false, ..._list].reduce((r, i) => (r || (i && i.image)));
             div.insertAdjacentHTML("beforeend", _list.map((item, index) => {
                 return ((null !== item) && (undefined !== item)) 
-                            ? `<a d-select-index="${index}">${item.image ? `<img src="${item.image}" ${item.imageInvert ? 'd-image-invert="1"' : ""} ${(item.imageSize instanceof Array) ? `width="${item.imageSize[0]}" height="${item.imageSize[1]}"` : ""} />${item.text}` : item}</a>`
+                            ? `<a d-select-index="${index}">
+                                ${((typeof item !== "string") && item.image) ? `<img src="${item.image}" ${item.imageInvert ? 'd-image-invert="1"' : ""} />` : ""}<span>${item.text || String(item)}</span>
+                               </a>`
                             : '<div d-separate-horizontal="1"></div>';
             }).join(""));
         }
@@ -52,7 +57,6 @@ popup.prototype = {
                 this[$resolve] = resolve;
                 this[$result] = undefined;
 
-                setTopZIndex(div);
                 document.body.insertAdjacentElement("beforeend", div);
                 setTimeout(() => div.className = "-season-tip-dialog -season-tip-popup-box -season-tip-fadein", 0);
                 div.addEventListener("blur", (e) => {
@@ -60,9 +64,13 @@ popup.prototype = {
                 }, { once: true });
                 [...div.querySelectorAll("[d-select-index]")].forEach(item => {
                     item.addEventListener("click", (e) => {
-                        this.close(Number(e.target.getAttribute("d-select-index")));
+                        this.close(Number(item.getAttribute("d-select-index")));
                     });
                 });
+
+                let imageRef = div.querySelector("[d-select-index] span");
+                imageRef = ((this[$hasImage] && imageRef) ? `${parseInt(imageRef.getBoundingClientRect().height)}px` : "0px");
+                div.style.setProperty("--image-size", imageRef);
 
                 _refElement || (_refElement = opt.refElement);
                 if (_refElement instanceof Element) {
@@ -118,9 +126,10 @@ popup.prototype = {
                         }
                         left = `${left}px`;
                     }
-                    div.setAttribute("style", `left:${left};right:${right};top:${top};bottom:${bottom};${opt.style||""}`);
+                    div.setAttribute("style", `left:${left};right:${right};top:${top};bottom:${bottom};--image-size:${imageRef};${opt.style||""}`);
                 }
 
+                setTopZIndex(div);
                 div.focus();
             } else {
                 reject(new Error("Reactive"));

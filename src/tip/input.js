@@ -31,7 +31,7 @@ export default function input(_title, _tip, _opt) {
             div.insertAdjacentHTML("beforeend", 
                 `<div class="-season-tip-dialog">
                     ${opt.title ? `<h4 style="margin-top:0">${opt.title}</h4>` : ""}
-                    <input class="-season-tip-input" type="text" placeholder="${opt.tip||""}" />
+                    <input class="-season-tip-input" type="${opt.inputType || "text"}" placeholder="${opt.tip||""}" />
                     <div class="-season-tip-button-bar" ${opt.buttonAlign ? `style="justify-content:${FlexAlignMap[opt.buttonAlign]||opt.buttonAlign};"` : ""}>
                         <div class="-season-tip-button -season-tip-button-default" d-button-submit="1">${opt.submitText || "Submit"}</div>
                         ${(opt.hideCancel || opt.forbitCancel) ? "" : `<div class="-season-tip-button" d-button-cancel="1">${opt.cancelText || "Cancel"}</div>`}

@@ -208,14 +208,14 @@
 }
 
 .-season-tip-popup-box [d-select-index] {
+    margin: 0;
     padding: 2px;
     width: 100%;
-    text-align: center;
     box-sizing: border-box;
     border: 0;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -224,13 +224,40 @@
     color: #fff;
 }
 
+.-season-tip-popup-box [d-select-index]:active {
+    background-image: linear-gradient(to top, #09f 10%, #07c 90%);
+    color: #fff;
+}
+
+.-season-tip-popup-box [d-select-index] span {
+    flex-grow: 1;
+    padding: 0 3px 0 calc(var(--image-size, 0px) + 3px);
+    border: 0;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.-season-tip-popup-box [d-select-index] img ~ span {
+    padding: 0 3px 0 3px;
+}
+
+.-season-tip-popup-box [d-select-index] img {
+    box-sizing: border-box;
+    height: var(--image-size, 0px);
+    width: var(--image-size, 0px);
+}
+
 .-season-tip-popup-box [d-select-index]:hover img[d-image-invert] {
     filter: invert(1);
 }
 
-.-season-tip-popup-box [d-select-index]:active {
-    background-image: linear-gradient(to top, #09f 10%, #07c 90%);
-    color: #fff;
+.-season-tip-popup-box [d-select-index]:active img[d-image-invert] {
+    filter: invert(1);
 }
 
 .-season-tip-popup-box [d-separate-horizontal] {

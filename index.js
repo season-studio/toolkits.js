@@ -5,4 +5,7 @@ export const DomKits = require("./src/domKits.js");
 export * from "./src/assert";
 export * from "./src/config";
 export * from "./src/tip";
+export * from "./src/classDefiner";
+export { default as classDefiner } from "./src/classDefiner";
 export { default as tipkit } from "./src/tip";
+export { default as URLParams } from "./src/urlParams";
