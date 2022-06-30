@@ -9,3 +9,5 @@ export * from "./src/classDefiner";
 export { default as classDefiner } from "./src/classDefiner";
 export { default as tipkit } from "./src/tip";
 export { default as URLParams } from "./src/urlParams";
+export * as FileDlgKit from "./src/fileDlgKit";
+export * from "./src/cloneObject";
