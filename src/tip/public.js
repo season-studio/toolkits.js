@@ -42,12 +42,16 @@ const transitionEndEventName = {
 }
 let transitionEndEvent = undefined;
 
-for (let name in transitionEndEventName) {
-    if (document.body.style[name] !== undefined) {
-        transitionEndEvent = transitionEndEventName[name];
-        break;
+document.addEventListener("readystatechange", function() {
+    if (document.readyState === "complete") {
+        for (let name in transitionEndEventName) {
+            if (document.body.style[name] !== undefined) {
+                transitionEndEvent = transitionEndEventName[name];
+                break;
+            }
+        }
     }
-}
+});
 
 /**
  * close the tip
