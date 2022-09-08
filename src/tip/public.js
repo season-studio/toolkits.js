@@ -34,19 +34,39 @@ export function setTopZIndex(_element) {
     }
 }
 
-const transitionEndEventName = {
-    transition: 'transitionend',
-    MozTransition: 'transitionend',
-    WebkitTransition: 'webkitTransitionEnd',
-    OTransition: 'oTransitionEnd otransitionend'
-}
-let transitionEndEvent = undefined;
+const transitionMap = {
+    transition: {
+        Start: "transitionstart",
+        Run: "transitionrun",
+        Cancel: "transitioncancel",
+        End: "transitionend"
+    },
+    OTransition: {
+        Start: "oTransitionStart",
+        Run: "oTransitionRun",
+        Cancel: "oTransitionCancel",
+        End: "oTransitionEnd"
+    },
+    MozTransition: {
+        Start: "transitionstart",
+        Run: "transitionrun",
+        Cancel: "transitioncancel",
+        End: "transitionend"
+    },
+    WebkitTransition: {
+        Start: "webkitTransitionStart",
+        Run: "webkitTransitionRun",
+        Cancel: "webkitTransitionCancel",
+        End: "webkitTransitionEnd"
+    }
+};
+let transitionEvent = undefined;
 
 document.addEventListener("readystatechange", function() {
     if (document.readyState === "complete") {
-        for (let name in transitionEndEventName) {
+        for (let name in transitionMap) {
             if (document.body.style[name] !== undefined) {
-                transitionEndEvent = transitionEndEventName[name];
+                transitionEvent = transitionMap[name];
                 break;
             }
         }
@@ -63,19 +83,22 @@ export function close(_result) {
     const obj = this[$private];
     const opt = this[$options];
     const fn = () => {
-        (typeof obj.remove === "function") && setTimeout(() => obj.remove(), 0);
+        (typeof obj.remove === "function") && Promise.resolve().then(() => {
+            obj.remove();
+            typeof this[$resolve] === "function" && (this[$resolve](_result), delete this[$resolve]);
+        });
         this[$timerId] && (clearTimeout(this[$timerId]), this[$timerId] = undefined);
         const onclose = (opt && opt.onclose);
         typeof onclose === "function" && onclose(this, _result);
-        typeof this[$resolve] === "function" && (this[$resolve](_result), delete this[$resolve]);
     };
-    if ((obj instanceof Element) && obj.isConnected) {
-        if (transitionEndEvent && (0 !== opt.fadeOutTime)) {
+    if ((obj instanceof Element) && obj.isConnected && (!obj.classList.contains("-season-tip-fadeout"))) {
+        if (transitionEvent && (0 !== opt.fadeOutTime)) {
             if (!isNaN(opt.fadeOutTime)) {
                 obj.setAttribute("style", `--fadeout-time:${opt.fadeOutTime}s;${obj.getAttribute("style")}`);
             }
             obj.className = `${obj.className} -season-tip-fadeout`;
-            obj.addEventListener(transitionEndEvent, fn, { once: true });
+            obj.addEventListener(transitionEvent.End, fn, { once: true });
+            obj.addEventListener(transitionEvent.Cancel, fn, { once: true });
         } else {
             fn();
         }

@@ -82,3 +82,30 @@ export function blobToBuffer(_blob, _fn) {
         }
     }) : undefined);
 }
+
+/**
+ * Convert a Blob into a text
+ * @param {Blob} _blob The source to be converted
+ * @param {Function} _fn Optional. The callback function to convert the ArrayBuffer customlize
+ * @returns {String|Any} The result
+ */
+export function blobToText(_blob, _fn) {
+    return Promise.resolve(_blob instanceof Blob ? new Promise((resolve, reject) => {
+        try {
+            let reader = new FileReader();
+            reader.onload = function (e) { 
+                try {
+                    let result = e.target.result;
+                    (typeof _fn === "function") && (result = _fn(result));
+                    resolve(result);
+                } catch(err) {
+                    reject(err);
+                }
+            };
+            reader.onerror = () => reject();
+            reader.readAsText(_blob);
+        } catch (err) {
+            reject(err);
+        }
+    }) : undefined);
+}

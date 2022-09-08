@@ -37,7 +37,7 @@ export default function dialog(_ElementOrHTML, _opt) {
                 if (e.target === div) {
                     (_opt.hasOwnProperty("blurToClose")) && this.close(_opt.blurToClose);
                 } else {
-                    for (let node of e.path) {
+                    for (let node of e.composedPath()) {
                         if (node.hasAttribute("d-click")) {
                             let fn = _opt[node.getAttribute("d-click")];
                             if (typeof fn === "function") {
@@ -71,7 +71,7 @@ dialog.prototype = {
                 (_parent instanceof HTMLElement) || (_parent = document.body);
                 setTopZIndex(div);
                 _parent.insertAdjacentElement("beforeend", div);
-                setTimeout(() => div.className = "-season-tip-mask-container -season-tip-fadein", 0);
+                Promise.resolve().then(() => div.className = "-season-tip-mask-container -season-tip-fadein");
             } else {
                 reject(new Error("Reactive"));
             }

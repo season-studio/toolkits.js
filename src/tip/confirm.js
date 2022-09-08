@@ -64,7 +64,7 @@ confirm.prototype = {
                 (_parent instanceof HTMLElement) || (_parent = document.body);
                 setTopZIndex(div);
                 _parent.insertAdjacentElement("afterbegin", div);
-                setTimeout(() => div.className = "-season-tip-mask-container -season-tip-fadein", 0);
+                Promise.resolve().then(() => div.className = "-season-tip-mask-container -season-tip-fadein");
                 [...div.querySelectorAll(".-season-tip-button")].forEach(button => {
                     button.addEventListener("click", e => {
                         this.close(Number(e.target.getAttribute("d-index")));

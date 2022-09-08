@@ -61,7 +61,7 @@ tip.prototype = {
             if (container) {
                 setTopZIndex(container);
                 container.insertAdjacentElement("afterbegin", div);
-                setTimeout(() => div.className = "-season-tip-box -season-tip-fadein", 0);
+                Promise.resolve().then(() => div.className = "-season-tip-box -season-tip-fadein");
                 const timeout = (Number(this[$options].timeout) || (this[$options].closable ? 0 : 3000));
                 timeout && (this[$timerId] = setTimeout(close.bind(this), timeout));
             }

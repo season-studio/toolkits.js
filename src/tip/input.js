@@ -69,7 +69,7 @@ input.prototype = {
 
                 setTopZIndex(div);
                 document.body.insertAdjacentElement("beforeend", div);
-                setTimeout(() => div.className = "-season-tip-mask-container -season-tip-fadein", 0);
+                Promise.resolve().then(() => div.className = "-season-tip-mask-container -season-tip-fadein");
 
                 let btn = div.querySelector("[d-button-submit]");
                 const fnSubmit = () => {

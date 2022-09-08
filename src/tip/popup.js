@@ -58,7 +58,7 @@ popup.prototype = {
                 this[$result] = undefined;
 
                 document.body.insertAdjacentElement("beforeend", div);
-                setTimeout(() => div.className = "-season-tip-dialog -season-tip-popup-box -season-tip-fadein", 0);
+                Promise.resolve().then(() => div.className = "-season-tip-dialog -season-tip-popup-box -season-tip-fadein");
                 div.addEventListener("blur", (e) => {
                     this.close(undefined);
                 }, { once: true });
