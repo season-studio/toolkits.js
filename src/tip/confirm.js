@@ -30,7 +30,7 @@ export default function confirm(_tip, _opt) {
             div.insertAdjacentHTML("beforeend", 
                 `<div class="-season-tip-dialog -season-confirm-box">
                     <div class="-season-confirm-info-line">
-                        ${IconCollection[_opt.icon] || ""}<div class="-season-confirm-info">${String(_tip).replace("\n", "<br />")}</div>
+                        ${IconCollection[_opt.icon] || ""}<div class="-season-confirm-info">${String(_tip).replaceAll("\n", "<br />")}</div>
                     </div>
                     <div class="-season-tip-button-bar" ${_opt.buttonAlign ? `style="justify-content:${FlexAlignMap[_opt.buttonAlign]||_opt.buttonAlign};"` : ""}>
                         ${_opt.buttons ? _opt.buttons.map((t, i) => `<div class="-season-tip-button ${i === _opt.default ? "-season-tip-button-default" : ""}" d-index="${i}">${t}</div>`).join("") : ""}

@@ -27,7 +27,7 @@ export default function tip(_tip, _opt) {
             div.setAttribute("class", "-season-tip-box");
             div.setAttribute("d-season-tip-type", _opt.type||"normal");
             _opt.customTag && div.setAttribute(_opt.customTag, _opt.customTag);
-            div.insertAdjacentHTML("beforeend", `<div class="-season-tip-icon"></div><div class="-season-tip-text">${String(_tip || "").replace("\n", "<br />")}</div>`);
+            div.insertAdjacentHTML("beforeend", `<div class="-season-tip-icon"></div><div class="-season-tip-text">${String(_tip || "").replaceAll("\n", "<br />")}</div>`);
             if (_opt.closable) {
                 div.insertAdjacentHTML("beforeend", '<div class="-season-tip-close-button" />');
                 const closeBtn = div.querySelector(".-season-tip-close-button");
