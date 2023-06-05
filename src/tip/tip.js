@@ -66,5 +66,13 @@ tip.prototype = {
                 timeout && (this[$timerId] = setTimeout(close.bind(this), timeout));
             }
         }
+    },
+    changeText(_text) {
+        const div = this[$private];
+        if ((this instanceof tip) && div) {
+            let textDiv = div.querySelector(".-season-tip-text");
+            textDiv.innerHTML = String(_text || "").replaceAll("\n", "<br />");
+        }
+        return this;
     }
 }
