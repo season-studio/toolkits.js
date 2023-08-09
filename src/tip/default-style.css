@@ -141,6 +141,8 @@
     align-items: flex-end;
     align-content: flex-end;
     width: 100%;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .-season-tip-button {
@@ -157,6 +159,7 @@
     border: solid 1px #ccc;
     color: #777;
     min-width: 60px;
+    cursor: pointer;
 }
 
 .-season-tip-button:hover {
